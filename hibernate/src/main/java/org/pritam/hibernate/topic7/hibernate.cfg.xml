@@ -14,5 +14,6 @@
 		<property name="format_sql">true</property>
 		
 		<mapping class="org.pritam.hibernate.topic7.Person"/>
+		<mapping class="org.pritam.hibernate.topic7.Rectangle"/>
 	</session-factory>
 </hibernate-configuration>
