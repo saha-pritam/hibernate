@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -16,7 +17,7 @@ public class Aadhar {
 	@Column(name="Name")
 	private String name;
 	@OneToOne
-	@JoinColumn(name = "PAN",referencedColumnName = "pan")
+	@JoinTable(name = "UID_PAN",joinColumns = @JoinColumn(name="UID",referencedColumnName = "uid"),inverseJoinColumns = @JoinColumn(name="PAN",referencedColumnName = "pan"))
 	private Pan pan;
 	public Aadhar() {
 		super();
