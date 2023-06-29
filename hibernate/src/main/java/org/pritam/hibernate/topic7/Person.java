@@ -3,6 +3,7 @@ package org.pritam.hibernate.topic7;
 import java.util.Date;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class Person {
 	@Column(name="Added_Date")
 	@Temporal(TemporalType.DATE)
 	private Date addedDate;
-	
+	@Embedded
 	private Address address;
 	
 	public Person(String name, Date addedDate, Address address) {

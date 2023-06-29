@@ -1,8 +1,5 @@
 package org.pritam.hibernate.topic7;
 
-import jakarta.persistence.Embeddable;
-
-@Embeddable
 public class Address {
 	private String state;
 	private String country;
