@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -25,7 +24,7 @@ public class Person {
 	private String name;
 	
 	@OneToMany
-	@JoinTable(name="PersonNumber",joinColumns = @JoinColumn(name="PID",referencedColumnName ="PersonID" ), inverseJoinColumns = @JoinColumn(name="MOBILE",referencedColumnName ="MobileNo" ))
+	@JoinColumn(name="PID",referencedColumnName = "PersonID")
 	private List<Mobile> numbers;
 
 	public Person() {
