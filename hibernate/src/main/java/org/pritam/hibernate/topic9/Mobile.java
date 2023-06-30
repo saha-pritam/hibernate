@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 @Table(name="Mobiles")
 public class Mobile {
 	@Id
-	@Column(name="Mobile_No")
+	@Column(name="MobileNo")
 	private String mobileNumber;
 
 	public Mobile() {

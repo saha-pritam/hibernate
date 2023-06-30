@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -16,13 +18,14 @@ import jakarta.persistence.Table;
 public class Person {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="Person_ID")
+	@Column(name="PersonID")
 	private int id;
 	
-	@Column(name="Person_Name")
+	@Column(name="PersonName")
 	private String name;
 	
 	@OneToMany
+	@JoinTable(name="PersonNumber",joinColumns = @JoinColumn(name="PID",referencedColumnName ="PersonID" ), inverseJoinColumns = @JoinColumn(name="MOBILE",referencedColumnName ="MobileNo" ))
 	private List<Mobile> numbers;
 
 	public Person() {
