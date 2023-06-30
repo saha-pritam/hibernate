@@ -16,8 +16,7 @@ public class Aadhar {
 	private String uid;
 	@Column(name="Name")
 	private String name;
-	@OneToOne
-	@JoinTable(name="Aadhar_Pan",joinColumns = @JoinColumn(name="UID",referencedColumnName = "uid"),inverseJoinColumns = @JoinColumn(name="PAN",referencedColumnName = "pan"))
+	@OneToOne(mappedBy="aadhar")
 	private Pan pan;
 	public Aadhar() {
 		super();
