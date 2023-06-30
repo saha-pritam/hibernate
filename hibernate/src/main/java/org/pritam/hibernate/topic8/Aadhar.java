@@ -14,7 +14,7 @@ public class Aadhar {
 	private String uid;
 	@Column(name="Name")
 	private String name;
-	@OneToOne
+	@OneToOne(mappedBy="aadhar")
 	private Pan pan;
 	public Aadhar() {
 		super();
