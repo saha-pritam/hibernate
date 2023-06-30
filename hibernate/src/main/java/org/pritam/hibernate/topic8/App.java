@@ -15,10 +15,20 @@ public class App {
 		Aadhar a3 = new Aadhar("999933119405","Fatima Bedi");
 		Aadhar a4 = new Aadhar("999955183433","Rohit Pandey");
 		
-		Pan p1 = new Pan("BAJPC4350M","Shivshankar Choudhury",a1);
-		Pan p2 = new Pan("DAJPC4150P","Kumar Agarwal",a2);
-		Pan p3 = new Pan("XGZFE7225A","Fatima Bedi",a3);
-		Pan p4 = new Pan("CTUGE1616I","Rohit Pandey",a4);
+		Pan p1 = new Pan("BAJPC4350M","Shivshankar Choudhury");
+		Pan p2 = new Pan("DAJPC4150P","Kumar Agarwal");
+		Pan p3 = new Pan("XGZFE7225A","Fatima Bedi");
+		Pan p4 = new Pan("CTUGE1616I","Rohit Pandey");
+		
+		a1.setPan(p1);
+		a2.setPan(p2);
+		a3.setPan(p3);
+		a4.setPan(p4);
+		
+		p1.setAadhar(a1);
+		p2.setAadhar(a2);
+		p3.setAadhar(a3);
+		p4.setAadhar(a4);
 		
 		//Saving Data
 		session.beginTransaction();
@@ -35,9 +45,12 @@ public class App {
 		//Clearing First Level Cache
 		session.clear();
 		
-		//Fetching
+		//Bi Directional Fetching
 		Pan pan = session.get(Pan.class, "BAJPC4350M");
 		System.out.println(pan);
+		Aadhar aadhar = session.get(Aadhar.class, "999971658847");
+		System.out.println(aadhar);
+		
 		
 		session.close();
 		sessionFactory.close();

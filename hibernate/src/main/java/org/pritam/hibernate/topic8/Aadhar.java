@@ -3,6 +3,7 @@ package org.pritam.hibernate.topic8;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,6 +14,8 @@ public class Aadhar {
 	private String uid;
 	@Column(name="Name")
 	private String name;
+	@OneToOne
+	private Pan pan;
 	public Aadhar() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -34,8 +37,14 @@ public class Aadhar {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public Pan getPan() {
+		return pan;
+	}
+	public void setPan(Pan pan) {
+		this.pan = pan;
+	}
 	@Override
 	public String toString() {
-		return "Aadhar [uid=" + uid + ", name=" + name + "]";
+		return "Aadhar [uid=" + uid + ", name=" + name + ", pan=" + pan.getPan() + "]";
 	}
 }

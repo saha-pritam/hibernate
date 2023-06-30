@@ -3,8 +3,6 @@ package org.pritam.hibernate.topic8;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -17,17 +15,15 @@ public class Pan {
 	@Column(name="Name")
 	private String name;
 	@OneToOne
-	@JoinTable(name="PAN_UID",joinColumns = @JoinColumn(name="PAN",referencedColumnName = "pan"),inverseJoinColumns = @JoinColumn(name="UID",referencedColumnName = "uid"))
 	private Aadhar aadhar;
 	public Pan() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Pan(String pan, String name, Aadhar aadhar) {
+	public Pan(String pan, String name) {
 		super();
 		this.pan = pan;
 		this.name = name;
-		this.aadhar = aadhar;
 	}
 	public String getPan() {
 		return pan;
@@ -49,6 +45,6 @@ public class Pan {
 	}
 	@Override
 	public String toString() {
-		return "Pan [pan=" + pan + ", name=" + name + ", aadhar=" + aadhar + "]";
+		return "Pan [pan=" + pan + ", name=" + name + ", aadhar=" + aadhar.getUid() + "]";
 	}
 }
