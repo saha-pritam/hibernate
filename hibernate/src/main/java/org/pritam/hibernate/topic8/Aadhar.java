@@ -3,6 +3,7 @@ package org.pritam.hibernate.topic8;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -15,6 +16,7 @@ public class Aadhar {
 	@Column(name="Name")
 	private String name;
 	@OneToOne
+	@JoinColumn(name="PAN",referencedColumnName = "pan")
 	private Pan pan;
 	public Aadhar() {
 		super();
