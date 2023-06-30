@@ -3,6 +3,8 @@ package org.pritam.hibernate.topic10;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -14,6 +16,7 @@ public class Mobile {
 	private String mobileNumber;
 	
 	@ManyToOne
+	@JoinTable(name="PersonMobile", joinColumns = @JoinColumn(name="MobileNo",referencedColumnName = "MobileNo"), inverseJoinColumns = @JoinColumn(name="PersonID",referencedColumnName = "PersonID") )
 	private Person person;
 
 	public Mobile() {
