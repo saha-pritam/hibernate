@@ -22,7 +22,7 @@ public class Person {
 	@Column(name="PersonName")
 	private String name;
 	
-	@OneToMany
+	@OneToMany(mappedBy="person")
 	private List<Mobile> numbers;
 
 	public Person() {
