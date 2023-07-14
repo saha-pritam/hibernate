@@ -9,8 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
@@ -25,8 +23,7 @@ public class Teacher {
 	@Column(name="Name")
 	private String name;
 	
-	@ManyToMany
-	@JoinTable(name="TeacherStudent",joinColumns = @JoinColumn(name="TID",referencedColumnName = "tid"),inverseJoinColumns = @JoinColumn(name="SID",referencedColumnName = "sid"))
+	@ManyToMany(mappedBy="teachers")
 	private List<Student> students;
 
 	public Teacher() {
