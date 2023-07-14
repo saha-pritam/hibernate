@@ -19,18 +19,17 @@ public class App {
 		Teacher t2 = new Teacher("Amalesh Pradhan");
 		Teacher t3 = new Teacher("Hawk");
 		
-		s1.getTeachers().add(t1);
-		s1.getTeachers().add(t2);
+		t1.getStudents().add(s1);
+		t1.getStudents().add(s2);
+		t1.getStudents().add(s3);
+		t1.getStudents().add(s4);
 		
-		s2.getTeachers().add(t1);
-		s2.getTeachers().add(t2);
-		s2.getTeachers().add(t3);
+		t2.getStudents().add(s1);
+		t2.getStudents().add(s2);
+		t2.getStudents().add(s3);
 		
-		s3.getTeachers().add(t1);
-		s3.getTeachers().add(t2);
-		s3.getTeachers().add(t3);
-		
-		s4.getTeachers().add(t1);
+		t3.getStudents().add(s2);
+		t3.getStudents().add(s3);
 				
 		//Saving Data
 		session.beginTransaction();
@@ -47,8 +46,9 @@ public class App {
 		session.clear();
 		
 		//Fetching
-		System.out.println(session.get(Student.class, 2));
-		System.out.println(session.get(Student.class, 4));
+		System.out.println(session.get(Teacher.class, 1));
+		System.out.println(session.get(Teacher.class, 2));
+		System.out.println(session.get(Teacher.class, 3));
 		
 		session.close();
 		sessionFactory.close();
