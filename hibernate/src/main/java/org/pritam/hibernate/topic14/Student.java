@@ -1,0 +1,66 @@
+package org.pritam.hibernate.topic14;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="Students")
+public class Student {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="SId")
+	private int sid;
+	
+	@Column(name="Name")
+	private String name;
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+	@JoinTable(name="StudentTeacher",joinColumns = @JoinColumn(name="SID",referencedColumnName = "sid"),inverseJoinColumns = @JoinColumn(name="TID",referencedColumnName = "tid"))
+	private List<Teacher> teachers;
+	
+	public Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Student(String name) {
+		super();
+		this.name = name;
+		this.teachers = new ArrayList<Teacher>();
+	}
+
+	public int getId() {
+		return sid;
+	}
+
+	public void setId(int sid) {
+		this.sid = sid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public List<Teacher> getTeachers() {
+		return teachers;
+	}
+
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+}
