@@ -24,7 +24,7 @@ public class Teacher {
 	@Column(name="Name")
 	private String name;
 	
-	@ManyToMany(mappedBy="teachers",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="teachers",fetch=FetchType.LAZY)
 	private List<Student> students;
 
 	public Teacher() {
