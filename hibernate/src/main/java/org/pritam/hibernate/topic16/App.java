@@ -43,11 +43,12 @@ public class App {
 		session.persist(s12);
 		session.getTransaction().commit();
 		
-		String query = "delete from Student where name=:studentName";
+		String query = "update Student set name=:x where name=:y";
 		
 		session.beginTransaction();
 		Query q = session.createQuery(query);
-		q.setParameter("studentName", "Ankan");
+		q.setParameter("x", "Pritam");
+		q.setParameter("y", "Agradip");
 		q.executeUpdate();
 		session.getTransaction().commit();
 				
