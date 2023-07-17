@@ -1,5 +1,7 @@
 package org.pritam.hibernate.topic16;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -41,15 +43,13 @@ public class App {
 		session.persist(s12);
 		session.getTransaction().commit();
 		
-		String query = "from Student where sid=2";
+		String query = "from Student";
 		Query q = session.createQuery(query,Student.class);
-		Student student = (Student) q.uniqueResult();
-		System.out.println("Student :- "+student);
+		List<Student> students = q.list();
 		
-		query = "from Student where sid=200";
-		q = session.createQuery(query,Student.class);
-		student = (Student) q.uniqueResult();
-		System.out.println("Student :- "+student);
+		for(Student student:students)
+			System.out.println(student);
+		
 		
 		session.close();
 		sessionFactory.close();
