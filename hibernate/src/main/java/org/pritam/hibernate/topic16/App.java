@@ -43,14 +43,14 @@ public class App {
 		session.persist(s12);
 		session.getTransaction().commit();
 		
-		String query = "update Student set name=:x where name=:y";
+		String query = "from Student";
+		Query q = session.createQuery(query, Student.class);
+		q.setFirstResult(0);
+		q.setMaxResults(3);
+		List<Student> students = q.list();
 		
-		session.beginTransaction();
-		Query q = session.createQuery(query);
-		q.setParameter("x", "Pritam");
-		q.setParameter("y", "Agradip");
-		q.executeUpdate();
-		session.getTransaction().commit();
+		for(Student student:students)
+			System.out.println(student);
 				
 		session.close();
 		sessionFactory.close();
