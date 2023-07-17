@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 
 public class App {
@@ -43,11 +44,9 @@ public class App {
 		session.persist(s12);
 		session.getTransaction().commit();
 		
-		String query = "from Student";
-		Query q = session.createQuery(query, Student.class);
-		q.setFirstResult(0);
-		q.setMaxResults(3);
-		List<Student> students = q.list();
+		String query = "select * from Students";
+		NativeQuery nativeQuery = session.createNativeQuery(query,Student.class);
+		List<Student> students = nativeQuery.list();
 		
 		for(Student student:students)
 			System.out.println(student);
