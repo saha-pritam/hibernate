@@ -43,8 +43,12 @@ public class App {
 		session.persist(s12);
 		session.getTransaction().commit();
 		
-		String query = "from Student";
+		String query = "from Student where sid>=:minRange and sid<=:maxRange";
+		
 		Query q = session.createQuery(query,Student.class);
+		q.setParameter("minRange", 2);
+		q.setParameter("maxRange", 7);
+		
 		List<Student> students = q.list();
 		
 		for(Student student:students)
