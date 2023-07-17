@@ -25,7 +25,7 @@ public class Student {
 	@Column(name="Name")
 	private String name;
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="StudentTeacher",joinColumns = @JoinColumn(name="SID",referencedColumnName = "sid"),inverseJoinColumns = @JoinColumn(name="TID",referencedColumnName = "tid"))
 	private List<Teacher> teachers;
 	

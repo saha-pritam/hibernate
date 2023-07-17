@@ -64,7 +64,7 @@ public class App {
 		Student s = session.get(Student.class, 1);
 		System.out.println(s.getId());
 		System.out.println(s.getName());
-		System.out.println(s.getTeachers()); //This print statement will lead to further query
+		System.out.println(s.getTeachers());
 		
 		//Clearing First Level Cache
 		session.clear();
@@ -73,7 +73,7 @@ public class App {
 		Teacher t = session.get(Teacher.class, 1);
 		System.out.println(t.getId());
 		System.out.println(t.getName());
-		System.out.println(t.getStudents()); //This print statement will lead to further query
+		System.out.println(t.getStudents());
 		
 		session.close();
 		sessionFactory.close();
