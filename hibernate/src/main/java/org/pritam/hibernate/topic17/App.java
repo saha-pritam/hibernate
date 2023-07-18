@@ -9,6 +9,7 @@ import org.hibernate.query.criteria.JpaCriteriaQuery;
 import org.hibernate.query.criteria.JpaRoot;
 
 import jakarta.persistence.criteria.Expression;
+import jakarta.persistence.criteria.Selection;
 
 public class App {
 
@@ -17,14 +18,12 @@ public class App {
 		Session session = sessionFactory.openSession();
 		
 		HibernateCriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		JpaCriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+		JpaCriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
 		JpaRoot<Student> root = criteriaQuery.from(Student.class);
 			
-		criteriaQuery.select(root).orderBy(criteriaBuilder.asc(root.get("name")),
-				criteriaBuilder.desc(root.get("mark")));
-		Query<Student> query = session.createQuery(criteriaQuery);
-		System.out.println(query.list());
-		
+		criteriaQuery.select((Selection)criteriaBuilder.count(root.get("id")));
+		Query<Long> query = session.createQuery(criteriaQuery);
+		System.out.println("Total Students :- "+query.uniqueResult());
 		session.close();
 		sessionFactory.close();
 	}
