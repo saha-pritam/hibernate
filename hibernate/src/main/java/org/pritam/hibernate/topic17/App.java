@@ -18,12 +18,17 @@ public class App {
 		Session session = sessionFactory.openSession();
 		
 		HibernateCriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		JpaCriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+		JpaCriteriaQuery<Integer> criteriaQuery = criteriaBuilder.createQuery(Integer.class);
 		JpaRoot<Student> root = criteriaQuery.from(Student.class);
 			
-		criteriaQuery.select((Selection)criteriaBuilder.count(root.get("id")));
-		Query<Long> query = session.createQuery(criteriaQuery);
-		System.out.println("Total Students :- "+query.uniqueResult());
+		criteriaQuery.select((Selection)criteriaBuilder.max((Expression)root.get("mark")));
+		Query<Integer> query = session.createQuery(criteriaQuery);
+		System.out.println("Maximum marks :- "+query.uniqueResult());
+		
+		criteriaQuery.select((Selection)criteriaBuilder.min((Expression)root.get("mark")));
+		query = session.createQuery(criteriaQuery);
+		System.out.println("Minimum marks :- "+query.uniqueResult());
+		
 		session.close();
 		sessionFactory.close();
 	}
