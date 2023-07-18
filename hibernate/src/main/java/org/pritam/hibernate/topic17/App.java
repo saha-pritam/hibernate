@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.query.criteria.HibernateCriteriaBuilder;
+import org.hibernate.query.criteria.JpaCriteriaDelete;
 import org.hibernate.query.criteria.JpaCriteriaQuery;
 import org.hibernate.query.criteria.JpaCriteriaUpdate;
 import org.hibernate.query.criteria.JpaRoot;
@@ -19,16 +20,14 @@ public class App {
 		SessionFactory sessionFactory = new Configuration().configure("org/pritam/hibernate/topic17/hibernate.cfg.xml").buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		
-		HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
-		JpaCriteriaUpdate<Student> criteriaUpdateQuery = builder.createCriteriaUpdate(Student.class);
-		Root<Student> root = criteriaUpdateQuery.from(Student.class);
-		criteriaUpdateQuery.set("name", "Pritam Saha");
-		criteriaUpdateQuery.where(builder.equal(root.get("id"), 2));
+		HibernateCriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		JpaCriteriaDelete<Student> createCriteriaDelete = criteriaBuilder.createCriteriaDelete(Student.class);
+		Root<Student> root = createCriteriaDelete.from(Student.class);
 		
+		createCriteriaDelete.where(criteriaBuilder.equal(root.get("id"), 2));
 		session.beginTransaction();
-		session.createQuery(criteriaUpdateQuery).executeUpdate();
+		session.createQuery(createCriteriaDelete).executeUpdate();
 		session.getTransaction().commit();
-		
 		session.close();
 		sessionFactory.close();
 	}
