@@ -21,7 +21,7 @@ public class App {
 		JpaCriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
 		JpaRoot<Student> root = criteriaQuery.from(Student.class);
 		
-		criteriaQuery.select(root).where(criteriaBuilder.between((Expression)root.get("mark"), 65, 80));
+		criteriaQuery.select(root).where(criteriaBuilder.like((Expression)root.get("name"), "%oh%"));
 		
 		Query<Student> query = session.createQuery(criteriaQuery);
 		System.out.println(query.list());
