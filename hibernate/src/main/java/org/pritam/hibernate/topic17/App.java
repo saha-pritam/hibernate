@@ -18,12 +18,12 @@ public class App {
 		Session session = sessionFactory.openSession();
 		
 		HibernateCriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-		JpaCriteriaQuery<Integer> criteriaQuery = criteriaBuilder.createQuery(Integer.class);
+		JpaCriteriaQuery<Double> criteriaQuery = criteriaBuilder.createQuery(Double.class);
 		JpaRoot<Student> root = criteriaQuery.from(Student.class);
 			
-		criteriaQuery.select((Selection)criteriaBuilder.sum((Expression)root.get("mark")));
-		Query<Integer> query = session.createQuery(criteriaQuery);
-		System.out.println("Sum of all marks :- "+query.uniqueResult());
+		criteriaQuery.select((Selection)criteriaBuilder.avg((Expression)root.get("mark")));
+		Query<Double> query = session.createQuery(criteriaQuery);
+		System.out.println("Avg of all marks :- "+query.uniqueResult());
 			
 		session.close();
 		sessionFactory.close();
