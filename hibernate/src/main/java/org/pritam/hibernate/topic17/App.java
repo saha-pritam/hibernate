@@ -8,6 +8,8 @@ import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 import org.hibernate.query.criteria.JpaCriteriaQuery;
 import org.hibernate.query.criteria.JpaRoot;
 
+import jakarta.persistence.criteria.Expression;
+
 
 public class App {
 
@@ -19,10 +21,11 @@ public class App {
 		JpaCriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
 		JpaRoot<Student> root = criteriaQuery.from(Student.class);
 		
-		//Select particular student using criteria API
-		criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("sid"), 2));
+		//Select list of student having marks less than 70
+		criteriaQuery.select(root).where(criteriaBuilder.lt((Expression)root.get("mark"), 70));
+		
 		Query<Student> query = session.createQuery(criteriaQuery);
-		System.out.println(query.uniqueResult());
+		System.out.println(query.list());
 		
 		session.close();
 		sessionFactory.close();
