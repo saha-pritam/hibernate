@@ -22,7 +22,7 @@ public class App {
 		JpaRoot<Student> root = criteriaQuery.from(Student.class);
 		
 		//Select list of student having marks less than 70
-		criteriaQuery.select(root).where(criteriaBuilder.gt((Expression)root.get("mark"), 70));
+		criteriaQuery.select(root).where(criteriaBuilder.lessThanOrEqualTo((Expression)root.get("mark"), 79));
 		
 		Query<Student> query = session.createQuery(criteriaQuery);
 		System.out.println(query.list());
