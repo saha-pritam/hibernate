@@ -8,6 +8,8 @@ import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 import org.hibernate.query.criteria.JpaCriteriaQuery;
 import org.hibernate.query.criteria.JpaRoot;
 
+import jakarta.persistence.criteria.Expression;
+
 public class App {
 
 	public static void main(String[] args) {
@@ -18,8 +20,9 @@ public class App {
 		JpaCriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
 		JpaRoot<Student> root = criteriaQuery.from(Student.class);
 			
-		criteriaQuery.select(root).where(criteriaBuilder.in(root.get("mark"),75,85,55));
-		
+		criteriaQuery.select(root).where(criteriaBuilder.and(
+				criteriaBuilder.like((Expression)root.get("name"), "%John%"),
+				criteriaBuilder.between((Expression)root.get("mark"), 60, 75)));
 		Query<Student> query = session.createQuery(criteriaQuery);
 		System.out.println(query.list());
 		
