@@ -21,8 +21,7 @@ public class App {
 		JpaCriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
 		JpaRoot<Student> root = criteriaQuery.from(Student.class);
 		
-		//Select list of student having marks less than 70
-		criteriaQuery.select(root).where(criteriaBuilder.greaterThanOrEqualTo((Expression)root.get("mark"), 79));
+		criteriaQuery.select(root).where(criteriaBuilder.between((Expression)root.get("mark"), 65, 80));
 		
 		Query<Student> query = session.createQuery(criteriaQuery);
 		System.out.println(query.list());
