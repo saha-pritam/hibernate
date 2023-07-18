@@ -19,10 +19,10 @@ public class App {
 		JpaCriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
 		JpaRoot<Student> root = criteriaQuery.from(Student.class);
 		
-		//Select all using criteria API
-		criteriaQuery.select(root);
+		//Select particular student using criteria API
+		criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("sid"), 2));
 		Query<Student> query = session.createQuery(criteriaQuery);
-		System.out.println(query.list());
+		System.out.println(query.uniqueResult());
 		
 		session.close();
 		sessionFactory.close();
