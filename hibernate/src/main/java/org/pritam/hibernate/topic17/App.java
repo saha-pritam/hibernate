@@ -21,14 +21,10 @@ public class App {
 		JpaCriteriaQuery<Integer> criteriaQuery = criteriaBuilder.createQuery(Integer.class);
 		JpaRoot<Student> root = criteriaQuery.from(Student.class);
 			
-		criteriaQuery.select((Selection)criteriaBuilder.max((Expression)root.get("mark")));
+		criteriaQuery.select((Selection)criteriaBuilder.sum((Expression)root.get("mark")));
 		Query<Integer> query = session.createQuery(criteriaQuery);
-		System.out.println("Maximum marks :- "+query.uniqueResult());
-		
-		criteriaQuery.select((Selection)criteriaBuilder.min((Expression)root.get("mark")));
-		query = session.createQuery(criteriaQuery);
-		System.out.println("Minimum marks :- "+query.uniqueResult());
-		
+		System.out.println("Sum of all marks :- "+query.uniqueResult());
+			
 		session.close();
 		sessionFactory.close();
 	}
