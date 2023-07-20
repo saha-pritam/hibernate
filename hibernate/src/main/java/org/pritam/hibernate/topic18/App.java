@@ -20,8 +20,9 @@ public class App {
 		Session session2 = sessionFactory.openSession();
 		System.out.println("Again trying to fetch student 1 details after closing previous session");
 		s = session2.get(Student.class, 1);
-		System.out.println("Student 1 details :- "+s);//Query to DB will be passed
+		System.out.println("Student 1 details :- "+s);//No Query to DB will be passed
 		session2.close();
 		sessionFactory.close();
+		
 	}
 }
