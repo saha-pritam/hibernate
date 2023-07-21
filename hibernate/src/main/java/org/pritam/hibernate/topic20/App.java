@@ -18,12 +18,9 @@ public class App {
 		session.beginTransaction();
 		session.persist(p1);
 		session.getTransaction().commit();
-		
-		//Clearing first level cache
-		session.clear();
-		
+				
 		session.beginTransaction();
-		session.remove(c1);
+		session.remove(p1);
 		session.getTransaction().commit();
 		
 		
