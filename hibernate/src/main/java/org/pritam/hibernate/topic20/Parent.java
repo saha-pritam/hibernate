@@ -31,4 +31,9 @@ public class Parent {
 		this.pid = pid;
 		this.val = val;
 	}
+
+	public Parent() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 }

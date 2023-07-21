@@ -7,14 +7,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name="Children")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Child {
 	@Id
 	@Column(name="CID")
@@ -26,10 +24,15 @@ public class Child {
 	@OneToOne
 	@JoinColumn(name="PID", referencedColumnName = "pid")
 	private Parent parent;
-
+	
 	public Child(int cid, String val) {
 		super();
 		this.cid = cid;
 		this.val = val;
+	}
+	
+	public Child() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 }
