@@ -16,7 +16,7 @@ public class App {
 		c1.setParent(p1);
 		
 		session.beginTransaction();
-		session.persist(c1);
+		session.persist(p1);
 		session.getTransaction().commit();
 		
 		
