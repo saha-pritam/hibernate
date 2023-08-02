@@ -13,10 +13,10 @@ public class App {
 		Session session = sessionFactory.openSession();
 		
 		Parent p1 = new Parent(1,"P1");
+		Parent p2 = new Parent(2,"P2");
 		
 		Child c1 = new Child(1,"C1");
 		Child c2 = new Child(2,"C2");
-		Child c3 = new Child(3,"C3");
 		
 		p1.setChildren(new ArrayList<Child>());
 		p1.getChildren().add(c1);
@@ -24,15 +24,14 @@ public class App {
 		c1.setParent(p1);
 		c2.setParent(p1);
 		
-		//Saving via child having no parent
+		//Saving via parent having at least one child
 		session.beginTransaction();
-		session.persist(c3);
+		session.persist(p1);
 		session.getTransaction().commit();
 		
-		//Saving via child having parent
+		//Saving via parent having no child
 		session.beginTransaction();
-		session.persist(c1);
-		session.persist(c2);
+		session.persist(p2);
 		session.getTransaction().commit();
 		
 		
