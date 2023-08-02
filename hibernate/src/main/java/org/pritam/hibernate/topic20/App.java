@@ -49,6 +49,16 @@ public class App {
 		session.persist(p2); //Saving via parent having at least one child
 		session.persist(p3); //Saving via parent having at least one child
 		session.persist(p4); //Saving via parent having no child
+		session.persist(c4); //Saving via child having no parent
+		session.getTransaction().commit();
+		
+		session.clear();
+		
+		c1 = session.get(Child.class, 1);
+		c4 = session.get(Child.class, 4);
+		session.beginTransaction();
+		session.remove(c1);//Deleting via child having at least one parent
+		session.remove(c4);//Deleting via child having no parent
 		session.getTransaction().commit();
 		
 		session.close();
