@@ -1,10 +1,13 @@
 package org.pritam.hibernate.topic20;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,9 +24,9 @@ public class Child {
 	@Column(name="VALUE")
 	private String val;
 	
-	@ManyToOne
-	@JoinColumn(name="PID", referencedColumnName = "pid")
-	private Parent parent;
+	@ManyToMany
+	@JoinTable(name="childparent",joinColumns = @JoinColumn(name="CID", referencedColumnName = "cid"),inverseJoinColumns = @JoinColumn(name="PID",referencedColumnName = "pid"))
+	private List<Parent> parent;
 	
 	public Child(int cid, String val) {
 		super();

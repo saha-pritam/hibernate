@@ -6,7 +6,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +25,7 @@ public class Parent {
 	@Column(name="VALUE")
 	private String val;
 	
-	@OneToMany(mappedBy="parent", cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="parent", cascade=CascadeType.ALL)
 	private List<Child> children;
 
 	public Parent(int pid, String val) {
