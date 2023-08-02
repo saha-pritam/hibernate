@@ -17,6 +17,7 @@ public class App {
 		
 		Child c1 = new Child(1,"C1");
 		Child c2 = new Child(2,"C2");
+		Child c3 = new Child(3,"C3");
 		
 		p1.setChildren(new ArrayList<Child>());
 		p1.getChildren().add(c1);
@@ -24,17 +25,23 @@ public class App {
 		c1.setParent(p1);
 		c2.setParent(p1);
 		
-		//Saving via parent having at least one child
+		//Saving dummy data
 		session.beginTransaction();
-		session.persist(p1);
+		session.persist(p1); //Saving parent having child
+		session.persist(p2); //Saving parent having no child
+		session.persist(c3); //Saving child having no parent
 		session.getTransaction().commit();
 		
-		//Saving via parent having no child
+		session.clear();
+		
+		c1=session.get(Child.class,1);
+		c3=session.get(Child.class,3);
+		
 		session.beginTransaction();
-		session.persist(p2);
+		session.remove(c1);//Deleting via child having parent
+		session.remove(c3);//Deleting via child having no parent
 		session.getTransaction().commit();
-		
-		
+				
 		session.close();
 		sessionFactory.close();
 		
