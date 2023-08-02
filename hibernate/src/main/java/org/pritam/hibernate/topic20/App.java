@@ -34,12 +34,12 @@ public class App {
 		
 		session.clear();
 		
-		c1=session.get(Child.class,1);
-		c3=session.get(Child.class,3);
+		p1=session.get(Parent.class,1);
+		p2=session.get(Parent.class,2);
 		
 		session.beginTransaction();
-		session.remove(c1);//Deleting via child having parent
-		session.remove(c3);//Deleting via child having no parent
+		session.remove(p1);//Deleting via child having parent
+		session.remove(p2);//Deleting via child having no parent
 		session.getTransaction().commit();
 				
 		session.close();
