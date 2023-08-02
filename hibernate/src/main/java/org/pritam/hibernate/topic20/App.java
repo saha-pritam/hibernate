@@ -45,11 +45,10 @@ public class App {
 		c3.getParent().add(p3);
 		
 		session.beginTransaction();
-		session.persist(c4);//Saving via child with no parent
-		session.getTransaction().commit();
-		
-		session.beginTransaction();
-		session.persist(c1);//Saving via child with at least one parent
+		session.persist(p1); //Saving via parent having at least one child
+		session.persist(p2); //Saving via parent having at least one child
+		session.persist(p3); //Saving via parent having at least one child
+		session.persist(p4); //Saving via parent having no child
 		session.getTransaction().commit();
 		
 		session.close();
