@@ -5,8 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.NamedNativeQueries;
+import jakarta.persistence.NamedNativeQuery;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,9 +20,9 @@ import lombok.ToString;
 @Setter
 @ToString
 
-@NamedQueries({
-	@NamedQuery(name = "getById", query = "from Person where id=:param"),
-	@NamedQuery(name = "getAll", query = "from Person")
+@NamedNativeQueries({
+	@NamedNativeQuery(name = "getById",query = "select * from person where pid=?",resultClass = Person.class),
+	@NamedNativeQuery(name = "getAll",query = "select * from person", resultClass = Person.class)
 })
 public class Person {
 	@Id

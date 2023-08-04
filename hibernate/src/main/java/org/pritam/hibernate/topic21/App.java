@@ -27,7 +27,7 @@ public class App {
 		session.clear();
 		
 		Query<Person> namedQuery = session.createNamedQuery("getById",Person.class);
-		namedQuery.setParameter("param", 1);
+		namedQuery.setParameter(1, 1);
 		Person person1 = namedQuery.uniqueResult();
 		System.out.println("Person 1 = "+person1);
 		
